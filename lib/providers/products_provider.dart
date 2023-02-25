@@ -42,9 +42,13 @@ class Products with ChangeNotifier {
   List<Product> get items {
     return [..._items]; // copy of _items object, if I return _items i would return a pointer
   }
+
+  Product findById(String id){
+    return _items.firstWhere((element) => element.id == id);
+  }
   
   void addProduct() {
-    _items.add();
+    // _items.add();
     notifyListeners(); // Notify listeners depending on certain resource that it has been changed
   }
 }

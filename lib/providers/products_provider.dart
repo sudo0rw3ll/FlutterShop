@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 
-
 class Products with ChangeNotifier {
   final List<Product> _items = [
     Product(
@@ -38,15 +37,36 @@ class Products with ChangeNotifier {
             'https://metro.co.uk/wp-content/uploads/2013/01/ay_102510013.jpg?quality=90&strip=all&w=1000&h=630&crop=1'),
   ];
 
+  // var _showFavoritesOnly = false;
+
+  List<Product> get favoriteItems { 
+    return _items.where((prodItem) => prodItem.isFavorite).toList();
+  }
 
   List<Product> get items {
-    return [..._items]; // copy of _items object, if I return _items i would return a pointer
+    // if (_showFavoritesOnly) {
+    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
+    // }
+
+    return [
+      ..._items
+    ]; // copy of _items object, if I return _items i would return a pointer
   }
 
-  Product findById(String id){
+  Product findById(String id) {
     return _items.firstWhere((element) => element.id == id);
   }
-  
+
+  // void showFavoritesOnly() {
+  //   _showFavoritesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll() {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+  // }
+
   void addProduct() {
     // _items.add();
     notifyListeners(); // Notify listeners depending on certain resource that it has been changed

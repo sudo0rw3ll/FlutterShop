@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class CartItem {
   final String id;
   final String title;

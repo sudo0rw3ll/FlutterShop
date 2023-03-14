@@ -39,7 +39,7 @@ class Products with ChangeNotifier {
 
   // var _showFavoritesOnly = false;
 
-  List<Product> get favoriteItems { 
+  List<Product> get favoriteItems {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
@@ -67,8 +67,15 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void addProduct() {
-    // _items.add();
+  void addProduct(Product product) {
+    final newProduct = Product(
+      title: product.title,
+      price: product.price,
+      description: product.description,
+      imageUrl: product.imageUrl,
+      id: DateTime.now().toString(),
+    );
+    _items.add(newProduct);
     notifyListeners(); // Notify listeners depending on certain resource that it has been changed
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/providers/products_provider.dart';
 
 import '../models/product.dart';
+import 'package:provider/provider.dart';
 
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/editProduct';
@@ -61,11 +63,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
 
     _form.currentState!.save();
-    print(_editedProduct.description);
-    print(_editedProduct.title);
-    print(_editedProduct.price);
-    print(_editedProduct.imageUrl);
-    print(_editedProduct.id);
+    Provider.of<Products>(context, listen: false).addProduct(
+        _editedProduct); //listen is set to false because I only want to trigger an addProduct method
+    Navigator.of(context).pop(); //go back to your products page
   }
 
   @override

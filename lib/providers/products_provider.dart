@@ -78,4 +78,13 @@ class Products with ChangeNotifier {
     _items.add(newProduct);
     notifyListeners(); // Notify listeners depending on certain resource that it has been changed
   }
+
+  void updateProduct(String id, Product newProduct) {
+    final prodIndex = _items.indexWhere((element) => element.id == id);
+
+    if (prodIndex >= 0) {
+      _items[prodIndex] = newProduct;
+      notifyListeners();
+    }
+  }
 }
